@@ -1,0 +1,15 @@
+<mat-card class="calendar-card">
+  <mat-card-header>
+    <mat-card-title>Kalorienverlauf</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let entry of sortedEntries">
+        <div class="entry-details">
+          <span class="entry-date">{{ entry.date | date: 'fullDate' }}</span>
+          <span class="entry-calories">{{ entry.calories }} kcal</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
