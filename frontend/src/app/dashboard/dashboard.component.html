@@ -1,0 +1,26 @@
+<div class="dashboard-container">
+  <mat-card class="summary-card">
+    <mat-card-header>
+      <mat-card-title>Heutige Kalorien</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <h1>{{ heutigeKalorien }} kcal</h1>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="entries-card">
+    <mat-card-header>
+      <mat-card-title>Letzte Einträge</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let eintrag of letzteEintraege">
+          <div class="entry-details">
+            <span class="entry-name">{{ eintrag.name }}</span>
+            <span class="entry-calories">{{ eintrag.calories }} kcal - {{ eintrag.date }}</span>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
