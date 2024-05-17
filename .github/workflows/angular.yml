@@ -12,17 +12,17 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: change_Directory
-        run:  cd frontend
       - name: install_dependencies
         run: npm i
+        working-directory: ./frontend
       - name: build_Angular
         run: npm run build
+        working-directory: ./frontend
       - name: deploy_Artifact
         id: build
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/frontend/browser
+          path: ./frontend/dist/frontend/browser
 
 
   deploy:
