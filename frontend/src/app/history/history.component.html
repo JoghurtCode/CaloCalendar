@@ -1,0 +1,12 @@
+<div class="history-container">
+  <mat-card *ngFor="let entry of entries" class="entry-card">
+    <mat-card-header>
+      <mat-card-title>{{ entry.date | date: 'fullDate' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Mahlzeit: {{ entry.meal }}</p>
+      <p>Kalorien: {{ entry.calories }} kcal</p>
+      <p>Notizen: {{ entry.notes }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
