@@ -20,6 +20,9 @@ jobs:
         run: npm run build
         working-directory: ./frontend
 
+      - name: List Build Directory
+        run: ls -R ./frontend/dist/frontend
+
       - name: Upload Artifact
         id: upload
         uses: actions/upload-pages-artifact@v3
@@ -33,7 +36,6 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
