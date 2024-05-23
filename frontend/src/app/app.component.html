@@ -1,5 +1,16 @@
-
-
+<mat-toolbar color="primary" class="app-toolbar">
+  <span class="title">Kalorienkalender</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/dashboard">Dashboard</button>
+  <button mat-button routerLink="/calendar">Kalender</button>
+  <button mat-button routerLink="/profile">Profil</button>
+  <button mat-button routerLink="/add-entry">Neuer Eintrag</button>
+  <button mat-button *ngIf="!isLoggedIn" routerLink="/login">Anmelden</button>
+  <button mat-button *ngIf="isLoggedIn" (mouseover)="showLogout = true" (mouseleave)="showLogout = false">
+    {{ username }}
+  </button>
+  <button mat-button *ngIf="showLogout" (click)="logout()">Logout</button>
+</mat-toolbar>
 
 <div class="container">
   <router-outlet></router-outlet>
