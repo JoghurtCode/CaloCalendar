@@ -6,24 +6,25 @@ on:
       - develop
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: install_dependencies
-        run: npm i
+
+      - name: Install Dependencies
+        run: npm install
         working-directory: ./frontend
-      - name: build_Angular
+
+      - name: Build Angular
         run: npm run build
         working-directory: ./frontend
-      - name: deploy_Artifact
-        id: build
+
+      - name: Upload Artifact
+        id: upload
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./frontend/dist/frontend/browser
-
+          path: ./frontend/dist/frontend
 
   deploy:
     needs: build
