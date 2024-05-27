@@ -1,0 +1,11 @@
+.meals-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.add-meal, .today-list {
+  flex: 1;
+  margin: 10px;
+  background-color: #e0e0e0;
+}

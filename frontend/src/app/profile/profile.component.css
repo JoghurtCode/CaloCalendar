@@ -1,0 +1,10 @@
+.profile-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.data-section, .goal-section {
+  flex: 1;
+  margin: 10px;
+}
