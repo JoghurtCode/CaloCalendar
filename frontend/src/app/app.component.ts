@@ -7,14 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CaloCalendar';
-  isLoggedIn = !!localStorage.getItem('token');
-  username = localStorage.getItem('username') || '';
-  showLogout = false;
-
-  logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    this.isLoggedIn = false;
-    this.username = '';
-  }
 }

@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CalendarComponent } from './calendar/calendar.component';
+import { HistoryComponent } from './history/history.component';
 import { ProfileComponent } from './profile/profile.component';
-import { AddEntryComponent } from './add-entry/add-entry.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './auth.guard';
+import { FridgeComponent } from './fridge/fridge.component';
+import { MealsComponent } from './meals/meals.component';
+import { RecipesComponent } from './recipes/recipes.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'add-entry', component: AddEntryComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // Default Route
-  { path: '**', redirectTo: '/dashboard' } // Wildcard Route
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'history', component: HistoryComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'fridge', component: FridgeComponent },
+  { path: 'meals', component: MealsComponent },
+  { path: 'recipes', component: RecipesComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: '/dashboard' }
 ];
 
 @NgModule({
