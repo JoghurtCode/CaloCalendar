@@ -1,8 +1,10 @@
 package de.sep.calocalendar.controller;
 
-//import de.sep.calocalendar.model.GroceryItem;
-import de.sep.calocalendar.repository.GroceryItemRepository;
+import de.sep.calocalendar.model.GroceryModel;
+import de.sep.calocalendar.service.GroceryItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,36 +14,31 @@ import java.util.List;
 public class GroceryItemController {
 
     @Autowired
-    private GroceryItemRepository groceryItemRepository;
-/*
+    private GroceryItemService groceryItemService;
+
     @GetMapping
-    public List<GroceryItem> getAllGroceryItems() {
-        return groceryItemRepository.findAll();
+    public ResponseEntity<List<GroceryModel>> getAllGroceryItems() {
+        return ResponseEntity.of(groceryItemService.getAllGroceryItems());
     }
 
     @GetMapping("/{id}")
-    public GroceryItem getGroceryItemById(@PathVariable Long id) {
-        return groceryItemRepository.findById(id).orElse(null);
+    public ResponseEntity<GroceryModel> getGroceryItemById(@PathVariable Long id) {
+        return ResponseEntity.of(groceryItemService.getGroceryItemById(id));
     }
 
     @PostMapping
-    public GroceryItem createGroceryItem(@RequestBody GroceryItem groceryItem) {
-        return groceryItemRepository.save(groceryItem);
+    public ResponseEntity<Long> createGroceryItem(@RequestBody GroceryModel groceryModel) {
+        return ResponseEntity.of(groceryItemService.createGroceryItem(groceryModel));
     }
 
     @PutMapping("/{id}")
-    public GroceryItem updateGroceryItem(@PathVariable Long id, @RequestBody GroceryItem groceryItemDetails) {
-        GroceryItem groceryItem = groceryItemRepository.findById(id).orElse(null);
-        if (groceryItem != null) {
-            groceryItem.setItemName(groceryItemDetails.getItemName());
-            groceryItem.setCalories(groceryItemDetails.getCalories());
-            return groceryItemRepository.save(groceryItem);
-        }
-        return null;
+    public ResponseEntity<GroceryModel> updateGroceryItem(@PathVariable Long id, @RequestBody GroceryModel groceryModel) {
+        return ResponseEntity.of(groceryItemService.updateGroceryItem(id, groceryModel));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteGroceryItem(@PathVariable Long id) {
-        groceryItemRepository.deleteById(id);
-    }*/
+    public ResponseEntity<Void> deleteGroceryItem(@PathVariable Long id) {
+        groceryItemService.deleteGroceryItem(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
