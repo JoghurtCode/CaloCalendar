@@ -111,8 +111,8 @@ components:
           readOnly: true
         userName:
           type: string
-        isMan:
-          type: boolean
+        gender:
+          type: integer
         age:
           type: integer
         weight:
@@ -122,11 +122,11 @@ components:
           type: integer
       required:
         - userName
-        - isMan
+        - gender
         - age
         - weight
         - levelOfPhysicalActivity
-    GroceryModel:
+    GroceryItemModel:
       type: object
       properties:
         id:
@@ -135,9 +135,10 @@ components:
           readOnly: true
         name:
           type: string
-        cals:
+        calories:
           type: integer
-          format: int64
+        weight:
+          type: integer
     MealModel:
       type: object
       properties:

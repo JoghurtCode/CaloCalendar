@@ -1,11 +1,16 @@
 package de.sep.calocalendar.entities;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class UserProfile {
 
     @Id
@@ -13,7 +18,7 @@ public class UserProfile {
     private Long id;
 
     private String userName;
-    private boolean isMan;
+    private int gender;
     private int age;
     private double weight;
     private int levelOfPhysicalActivity;
