@@ -9,4 +9,5 @@ export class DashboardComponent {
   height: number = 1.8;
   goal: string = "Gewicht verlieren";
   weight: number = 75;
+
 }
