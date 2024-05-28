@@ -15,23 +15,22 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddEntryComponent } from './add-entry/add-entry.component';
+import { HistoryComponent } from './history/history.component';
 import { ProfileComponent } from './profile/profile.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
+import { FridgeComponent } from './fridge/fridge.component';
+import { MealsComponent } from './meals/meals.component';
+import { RecipesComponent } from './recipes/recipes.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AddEntryComponent,
+    HistoryComponent,
     ProfileComponent,
-    CalendarComponent,
-    LoginComponent,
-    RegisterComponent
+    FridgeComponent,
+    MealsComponent,
+    RecipesComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +48,7 @@ import { AuthGuard } from './auth.guard';
     MatNativeDateModule,
     MatListModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
