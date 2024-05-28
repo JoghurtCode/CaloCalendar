@@ -111,8 +111,8 @@ components:
           readOnly: true
         userName:
           type: string
-        isMan:
-          type: boolean
+        gender:
+          type: integer
         age:
           type: integer
         weight:
