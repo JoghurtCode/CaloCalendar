@@ -24,9 +24,9 @@ jobs:
         run: ls -R ./frontend/dist/frontend
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        id: upload
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: build
           path: ./frontend/dist/frontend
 
   deploy:
@@ -39,15 +39,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: ./frontend/dist/frontend
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
