@@ -1,3 +1,5 @@
+package de.sep.calocalendar;
+
 import javax.swing.*;
 
 public class CalorieCalculator {
@@ -23,7 +25,7 @@ public class CalorieCalculator {
 
 int calculateCalorieNeeds(int gender,double bodyweight,double height, double age, int physicalActivity, int selectedGoal) {
 
-    double neededCalories;
+    double neededCalories = 0;
 
     switch (gender) {
         case 0:
