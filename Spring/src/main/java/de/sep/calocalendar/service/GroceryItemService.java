@@ -1,7 +1,9 @@
 package de.sep.calocalendar.service;
 
 import de.sep.calocalendar.entities.GroceryItem;
-import de.sep.calocalendar.model.GroceryModel;
+import de.sep.calocalendar.mapper.GroceryItemMapper;
+import de.sep.calocalendar.mapper.GroceryItemMapperImpl;
+import de.sep.calocalendar.model.GroceryItemModel;
 import de.sep.calocalendar.repository.GroceryItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,37 +17,40 @@ public class GroceryItemService {
     @Autowired
     private GroceryItemRepository groceryItemRepository;
 
-    public Optional<List<GroceryModel>> getAllGroceryItems() {
+    @Autowired
+    private GroceryItemMapper mapper = new GroceryItemMapperImpl();
+
+    public Optional<List<GroceryItemModel>> getAllGroceryItems() {
         List<GroceryItem> groceryItems = groceryItemRepository.findAll();
-        List<GroceryModel> groceryModels = groceryItems.stream()
-                .map(this::toModel)
+        List<GroceryItemModel> groceryModels = groceryItems.stream()
+                .map(mapper::toModel)
                 .toList();
         return Optional.of(groceryModels);
     }
 
-    public Optional<GroceryModel> getGroceryItemById(Long id) {
+    public Optional<GroceryItemModel> getGroceryItemById(Long id) {
         GroceryItem groceryItem = groceryItemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find GroceryItem with id " + id));
-        GroceryModel groceryModel = toModel(groceryItem);
+        GroceryItemModel groceryModel = mapper.toModel(groceryItem);
         return Optional.of(groceryModel);
     }
 
-    public Optional<Long> createGroceryItem(GroceryModel groceryModel) {
+    public Optional<Long> createGroceryItem(GroceryItemModel groceryModel) {
         if (groceryModel.getId() != null) {
             throw new IllegalArgumentException("ID must be null for new GroceryItem");
         }
-        GroceryItem groceryItem = toEntity(groceryModel);
+        GroceryItem groceryItem = mapper.toEntity(groceryModel);
         groceryItem = groceryItemRepository.save(groceryItem);
         return Optional.of(groceryItem.getId());
     }
 
-    public Optional<GroceryModel> updateGroceryItem(Long id, GroceryModel groceryModel) {
+    public Optional<GroceryItemModel> updateGroceryItem(Long id, GroceryItemModel groceryModel) {
         GroceryItem existingGroceryItem = groceryItemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find GroceryItem with id " + id));
 
         updateEntityFromModel(groceryModel, existingGroceryItem);
         GroceryItem updatedGroceryItem = groceryItemRepository.save(existingGroceryItem);
-        GroceryModel updatedModel = toModel(updatedGroceryItem);
+        GroceryItemModel updatedModel = mapper.toModel(updatedGroceryItem);
         return Optional.of(updatedModel);
     }
 
@@ -57,23 +62,8 @@ public class GroceryItemService {
         }
     }
 
-    private GroceryModel toModel(GroceryItem groceryItem) {
-        GroceryModel model = new GroceryModel();
-        model.setId(groceryItem.getId());
-        model.setName(groceryItem.getName());
-        model.setCals(groceryItem.getCals());
-        return model;
-    }
-
-    private GroceryItem toEntity(GroceryModel model) {
-        GroceryItem entity = new GroceryItem();
+    private void updateEntityFromModel(GroceryItemModel model, GroceryItem entity) {
         entity.setName(model.getName());
-        entity.setCals(model.getCals());
-        return entity;
-    }
-
-    private void updateEntityFromModel(GroceryModel model, GroceryItem entity) {
-        entity.setName(model.getName());
-        entity.setCals(model.getCals());
+        entity.setCalories(model.getCalories());
     }
 }

@@ -1,6 +1,8 @@
 package de.sep.calocalendar.service;
 
 import de.sep.calocalendar.entities.UserProfile;
+import de.sep.calocalendar.mapper.UserProfileMapper;
+import de.sep.calocalendar.mapper.UserProfileMapperImpl;
 import de.sep.calocalendar.model.UserProfileModel;
 import de.sep.calocalendar.repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,13 @@ public class UserProfileService {
     @Autowired
     private UserProfileRepository userProfileRepository;
 
+    @Autowired
+    private UserProfileMapper mapper = new UserProfileMapperImpl();
+
     public Optional<List<UserProfileModel>> getAllUserProfiles() {
         List<UserProfile> userProfiles = userProfileRepository.findAll();
         List<UserProfileModel> userProfileModels = userProfiles.stream()
-                .map(this::toModel)
+                .map(mapper::toModel)
                 .toList();
         return Optional.of(userProfileModels);
     }
@@ -26,7 +31,7 @@ public class UserProfileService {
     public Optional<UserProfileModel> getUserProfileById(Long id) {
         UserProfile userProfile = userProfileRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find UserProfile with id " + id));
-        UserProfileModel userProfileModel = toModel(userProfile);
+        UserProfileModel userProfileModel = mapper.toModel(userProfile);
         return Optional.of(userProfileModel);
     }
 
@@ -34,7 +39,7 @@ public class UserProfileService {
         if (userProfileModel.getId() != null) {
             throw new IllegalArgumentException("ID must be null for new UserProfile");
         }
-        UserProfile userProfile = toEntity(userProfileModel);
+        UserProfile userProfile = mapper.toEntity(userProfileModel);
         userProfile = userProfileRepository.save(userProfile);
         return Optional.of(userProfile.getId());
     }
@@ -45,7 +50,7 @@ public class UserProfileService {
 
         updateEntityFromModel(userProfileModel, existingUserProfile);
         UserProfile updatedUserProfile = userProfileRepository.save(existingUserProfile);
-        UserProfileModel updatedModel = toModel(updatedUserProfile);
+        UserProfileModel updatedModel = mapper.toModel(updatedUserProfile);
         return Optional.of(updatedModel);
     }
 
@@ -55,27 +60,6 @@ public class UserProfileService {
         } else {
             throw new IllegalArgumentException("Could not find UserProfile by id: " + id);
         }
-    }
-
-    private UserProfileModel toModel(UserProfile userProfile) {
-        UserProfileModel model = new UserProfileModel();
-        model.setId(userProfile.getId());
-        model.setUserName(userProfile.getUserName());
-        model.setGender(userProfile.getGender());
-        model.setAge(userProfile.getAge());
-        model.setWeight(userProfile.getWeight());
-        model.setLevelOfPhysicalActivity(userProfile.getLevelOfPhysicalActivity());
-        return model;
-    }
-
-    private UserProfile toEntity(UserProfileModel model) {
-        UserProfile entity = new UserProfile();
-        entity.setUserName(model.getUserName());
-        entity.setGender(model.getGender());
-        entity.setAge(model.getAge());
-        entity.setWeight(model.getWeight());
-        entity.setLevelOfPhysicalActivity(model.getLevelOfPhysicalActivity());
-        return entity;
     }
 
     private void updateEntityFromModel(UserProfileModel model, UserProfile entity) {

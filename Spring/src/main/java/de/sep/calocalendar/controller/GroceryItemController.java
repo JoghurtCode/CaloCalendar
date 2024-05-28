@@ -1,6 +1,6 @@
 package de.sep.calocalendar.controller;
 
-import de.sep.calocalendar.model.GroceryModel;
+import de.sep.calocalendar.model.GroceryItemModel;
 import de.sep.calocalendar.service.GroceryItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,22 +17,22 @@ public class GroceryItemController {
     private GroceryItemService groceryItemService;
 
     @GetMapping
-    public ResponseEntity<List<GroceryModel>> getAllGroceryItems() {
+    public ResponseEntity<List<GroceryItemModel>> getAllGroceryItems() {
         return ResponseEntity.of(groceryItemService.getAllGroceryItems());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GroceryModel> getGroceryItemById(@PathVariable Long id) {
+    public ResponseEntity<GroceryItemModel> getGroceryItemById(@PathVariable Long id) {
         return ResponseEntity.of(groceryItemService.getGroceryItemById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Long> createGroceryItem(@RequestBody GroceryModel groceryModel) {
+    public ResponseEntity<Long> createGroceryItem(@RequestBody GroceryItemModel groceryModel) {
         return ResponseEntity.of(groceryItemService.createGroceryItem(groceryModel));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<GroceryModel> updateGroceryItem(@PathVariable Long id, @RequestBody GroceryModel groceryModel) {
+    public ResponseEntity<GroceryItemModel> updateGroceryItem(@PathVariable Long id, @RequestBody GroceryItemModel groceryModel) {
         return ResponseEntity.of(groceryItemService.updateGroceryItem(id, groceryModel));
     }
 

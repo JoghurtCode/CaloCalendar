@@ -1,6 +1,8 @@
 package de.sep.calocalendar.service;
 
 import de.sep.calocalendar.entities.Meal;
+import de.sep.calocalendar.mapper.MealMapper;
+import de.sep.calocalendar.mapper.MealMapperImpl;
 import de.sep.calocalendar.model.MealModel;
 import de.sep.calocalendar.repository.MealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,13 @@ public class MealService {
     @Autowired
     private MealRepository mealRepository;
 
+    @Autowired
+    private MealMapper mapper = new MealMapperImpl();
+
     public Optional<List<MealModel>> getAllMeals() {
         List<Meal> meals = mealRepository.findAll();
         List<MealModel> mealModels = meals.stream()
-                .map(this::toModel)
+                .map(mapper::toModel)
                 .toList();
         return Optional.of(mealModels);
     }
@@ -26,7 +31,7 @@ public class MealService {
     public Optional<MealModel> getMealById(Long id) {
         Meal meal = mealRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find Meal with id " + id));
-        MealModel mealModel = toModel(meal);
+        MealModel mealModel = mapper.toModel(meal);
         return Optional.of(mealModel);
     }
 
@@ -34,7 +39,7 @@ public class MealService {
         if (mealModel.getId() != null) {
             throw new IllegalArgumentException("ID must be null for new Meal");
         }
-        Meal meal = toEntity(mealModel);
+        Meal meal = mapper.toEntity(mealModel);
         meal = mealRepository.save(meal);
         return Optional.of(meal.getId());
     }
@@ -45,7 +50,7 @@ public class MealService {
 
         updateEntityFromModel(mealModel, existingMeal);
         Meal updatedMeal = mealRepository.save(existingMeal);
-        MealModel updatedModel = toModel(updatedMeal);
+        MealModel updatedModel = mapper.toModel(updatedMeal);
         return Optional.of(updatedModel);
     }
 
@@ -55,19 +60,6 @@ public class MealService {
         } else {
             throw new IllegalArgumentException("Could not find Meal by id: " + id);
         }
-    }
-
-    private MealModel toModel(Meal meal) {
-        MealModel model = new MealModel();
-        model.setId(meal.getId());
-        model.setMealName(meal.getMealName());
-        return model;
-    }
-
-    private Meal toEntity(MealModel model) {
-        Meal entity = new Meal();
-        entity.setMealName(model.getMealName());
-        return entity;
     }
 
     private void updateEntityFromModel(MealModel model, Meal entity) {
