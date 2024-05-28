@@ -27,6 +27,7 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Beispiel-Daten einfügen
+        /*
         UserProfile user1 = new UserProfile();
         user1.setUsername("JohnDoe");
         user1.setEmail("john@example.com");
@@ -63,6 +64,6 @@ public class DataLoader implements CommandLineRunner {
         meal2.setUserProfile(user2);
         meal2.setGroceryItems(Arrays.asList(item2, item3));
 
-        mealRepository.saveAll(Arrays.asList(meal1, meal2));
+        mealRepository.saveAll(Arrays.asList(meal1, meal2));*/
     }
 }

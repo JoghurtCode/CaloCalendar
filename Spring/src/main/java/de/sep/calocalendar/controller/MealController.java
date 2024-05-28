@@ -1,6 +1,6 @@
 package de.sep.calocalendar.controller;
 
-import de.sep.calocalendar.model.Meal;
+//import de.sep.calocalendar.model.Meal;
 import de.sep.calocalendar.repository.MealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ public class MealController {
 
     @Autowired
     private MealRepository mealRepository;
-
+/*
     @GetMapping
     public List<Meal> getAllMeals() {
         return mealRepository.findAll();
@@ -44,5 +44,5 @@ public class MealController {
     @DeleteMapping("/{id}")
     public void deleteMeal(@PathVariable Long id) {
         mealRepository.deleteById(id);
-    }
+    }*/
 }

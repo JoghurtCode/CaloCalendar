@@ -1,6 +1,6 @@
 package de.sep.calocalendar.controller;
 
-import de.sep.calocalendar.model.UserProfile;
+import de.sep.calocalendar.model.UserProfileModel;
 import de.sep.calocalendar.repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ public class UserProfileController {
 
     @Autowired
     private UserProfileRepository userProfileRepository;
-
+/*
     @GetMapping
     public List<UserProfile> getAllUserProfiles() {
         return userProfileRepository.findAll();
@@ -44,5 +44,5 @@ public class UserProfileController {
     @DeleteMapping("/{id}")
     public void deleteUserProfile(@PathVariable Long id) {
         userProfileRepository.deleteById(id);
-    }
+    }*/
 }

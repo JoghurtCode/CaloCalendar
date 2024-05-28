@@ -1,6 +1,6 @@
 package de.sep.calocalendar.controller;
 
-import de.sep.calocalendar.model.GroceryItem;
+//import de.sep.calocalendar.model.GroceryItem;
 import de.sep.calocalendar.repository.GroceryItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ public class GroceryItemController {
 
     @Autowired
     private GroceryItemRepository groceryItemRepository;
-
+/*
     @GetMapping
     public List<GroceryItem> getAllGroceryItems() {
         return groceryItemRepository.findAll();
@@ -43,5 +43,5 @@ public class GroceryItemController {
     @DeleteMapping("/{id}")
     public void deleteGroceryItem(@PathVariable Long id) {
         groceryItemRepository.deleteById(id);
-    }
+    }*/
 }
