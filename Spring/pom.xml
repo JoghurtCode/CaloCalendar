@@ -85,6 +85,12 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>1.6.0.Beta2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.11.0-M2</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -126,7 +126,7 @@ components:
         - age
         - weight
         - levelOfPhysicalActivity
-    GroceryModel:
+    GroceryItemModel:
       type: object
       properties:
         id:
@@ -135,9 +135,10 @@ components:
           readOnly: true
         name:
           type: string
-        cals:
+        calories:
           type: integer
-          format: int64
+        weight:
+          type: integer
     MealModel:
       type: object
       properties:
