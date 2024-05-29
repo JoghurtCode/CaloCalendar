@@ -85,6 +85,12 @@
 			<version>5.11.0-M2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.10.2</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -122,6 +128,7 @@
 							<modelPackage>de.sep.calocalendar.model</modelPackage>
 							<generateApiTests>false</generateApiTests>
 							<generateModelTests>false</generateModelTests>
+							<ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
 							<configOptions>
 								<sourceFolder>src/gen/java/main</sourceFolder>
 								<delegatePattern>true</delegatePattern>
