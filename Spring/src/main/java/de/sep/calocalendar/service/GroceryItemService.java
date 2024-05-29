@@ -18,7 +18,7 @@ public class GroceryItemService {
     private GroceryItemRepository groceryItemRepository;
 
     @Autowired
-    private GroceryItemMapper mapper = new GroceryItemMapperImpl();
+    private final GroceryItemMapper mapper = new GroceryItemMapperImpl();
 
     public Optional<List<GroceryItemModel>> getAllGroceryItems() {
         List<GroceryItem> groceryItems = groceryItemRepository.findAll();

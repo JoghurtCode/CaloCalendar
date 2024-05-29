@@ -18,7 +18,7 @@ public class MealService {
     private MealRepository mealRepository;
 
     @Autowired
-    private MealMapper mapper = new MealMapperImpl();
+    private final MealMapper mapper = new MealMapperImpl();
 
     public Optional<List<MealModel>> getAllMeals() {
         List<Meal> meals = mealRepository.findAll();

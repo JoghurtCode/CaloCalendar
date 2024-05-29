@@ -18,7 +18,7 @@ public class UserProfileService {
     private UserProfileRepository userProfileRepository;
 
     @Autowired
-    private UserProfileMapper mapper = new UserProfileMapperImpl();
+    private final UserProfileMapper mapper = new UserProfileMapperImpl();
 
     public Optional<List<UserProfileModel>> getAllUserProfiles() {
         List<UserProfile> userProfiles = userProfileRepository.findAll();
