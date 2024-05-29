@@ -1,8 +1,10 @@
 package de.sep.calocalendar.controller;
 
-//import de.sep.calocalendar.model.Meal;
-import de.sep.calocalendar.repository.MealRepository;
+import de.sep.calocalendar.model.MealModel;
+import de.sep.calocalendar.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,37 +14,31 @@ import java.util.List;
 public class MealController {
 
     @Autowired
-    private MealRepository mealRepository;
-/*
+    private MealService mealService;
+
     @GetMapping
-    public List<Meal> getAllMeals() {
-        return mealRepository.findAll();
+    public ResponseEntity<List<MealModel>> getAllMeals() {
+        return ResponseEntity.of(mealService.getAllMeals());
     }
 
     @GetMapping("/{id}")
-    public Meal getMealById(@PathVariable Long id) {
-        return mealRepository.findById(id).orElse(null);
+    public ResponseEntity<MealModel> getMealById(@PathVariable Long id) {
+        return ResponseEntity.of(mealService.getMealById(id));
     }
 
     @PostMapping
-    public Meal createMeal(@RequestBody Meal meal) {
-        return mealRepository.save(meal);
+    public ResponseEntity<Long> createMeal(@RequestBody MealModel mealModel) {
+        return ResponseEntity.of(mealService.createMeal(mealModel));
     }
 
     @PutMapping("/{id}")
-    public Meal updateMeal(@PathVariable Long id, @RequestBody Meal mealDetails) {
-        Meal meal = mealRepository.findById(id).orElse(null);
-        if (meal != null) {
-            meal.setMealName(mealDetails.getMealName());
-            meal.setUserProfile(mealDetails.getUserProfile());
-            meal.setGroceryItems(mealDetails.getGroceryItems());
-            return mealRepository.save(meal);
-        }
-        return null;
+    public ResponseEntity<MealModel> updateMeal(@PathVariable Long id, @RequestBody MealModel mealModel) {
+        return ResponseEntity.of(mealService.updateMeal(id, mealModel));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteMeal(@PathVariable Long id) {
-        mealRepository.deleteById(id);
-    }*/
+    public ResponseEntity<Void> deleteMeal(@PathVariable Long id) {
+        mealService.deleteMeal(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

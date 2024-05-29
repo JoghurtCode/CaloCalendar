@@ -4,7 +4,7 @@ import de.sep.calocalendar.entities.Meal;
 import de.sep.calocalendar.model.MealModel;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface MealMapper {
 
     Meal toEntity(MealModel model);

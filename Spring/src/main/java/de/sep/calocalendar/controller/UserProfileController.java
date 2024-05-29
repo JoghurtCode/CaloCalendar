@@ -1,8 +1,10 @@
 package de.sep.calocalendar.controller;
 
 import de.sep.calocalendar.model.UserProfileModel;
-import de.sep.calocalendar.repository.UserProfileRepository;
+import de.sep.calocalendar.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,38 +13,32 @@ import java.util.List;
 @RequestMapping("/api/userprofiles")
 public class UserProfileController {
 
-    @Autowired
-    private UserProfileRepository userProfileRepository;
-/*
+   @Autowired
+    private UserProfileService userProfileService;
+
     @GetMapping
-    public List<UserProfile> getAllUserProfiles() {
-        return userProfileRepository.findAll();
+    public ResponseEntity<List<UserProfileModel>> getAllUserProfiles() {
+        return ResponseEntity.of(userProfileService.getAllUserProfiles());
     }
 
     @GetMapping("/{id}")
-    public UserProfile getUserProfileById(@PathVariable Long id) {
-        return userProfileRepository.findById(id).orElse(null);
+    public ResponseEntity<UserProfileModel> getUserProfileById(@PathVariable Long id) {
+        return ResponseEntity.of(userProfileService.getUserProfileById(id));
     }
 
     @PostMapping
-    public UserProfile createUserProfile(@RequestBody UserProfile userProfile) {
-        return userProfileRepository.save(userProfile);
+    public ResponseEntity<Long> createUserProfile(@RequestBody UserProfileModel userProfileModel) {
+        return ResponseEntity.of(userProfileService.createUserProfile(userProfileModel));
     }
 
     @PutMapping("/{id}")
-    public UserProfile updateUserProfile(@PathVariable Long id, @RequestBody UserProfile userProfileDetails) {
-        UserProfile userProfile = userProfileRepository.findById(id).orElse(null);
-        if (userProfile != null) {
-            userProfile.setUsername(userProfileDetails.getUsername());
-            userProfile.setEmail(userProfileDetails.getEmail());
-            userProfile.setPassword(userProfileDetails.getPassword());
-            return userProfileRepository.save(userProfile);
-        }
-        return null;
+    public ResponseEntity<UserProfileModel> updateUserProfile(@PathVariable Long id, @RequestBody UserProfileModel userProfileModel) {
+        return ResponseEntity.of(userProfileService.updateUserProfile(id, userProfileModel));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUserProfile(@PathVariable Long id) {
-        userProfileRepository.deleteById(id);
-    }*/
+    public ResponseEntity<Void> deleteUserProfile(@PathVariable Long id) {
+        userProfileService.deleteUserProfile(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
