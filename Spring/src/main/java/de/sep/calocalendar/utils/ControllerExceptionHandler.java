@@ -13,19 +13,19 @@ import java.util.Optional;
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleExceptions(Exception ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(createAndLogError(ex.getMessage()));
     }
 
-    private static java.lang.Error createAndLogError(String errorMessage) {
+    private static Error createAndLogError(String errorMessage) {
         return Optional.ofNullable(errorMessage)
                 .map(erMessage -> createAndLogError(List.of(erMessage)))
-                .orElseGet(() -> createAndLogError());
+                .orElseGet(ControllerExceptionHandler::createAndLogError);
     }
 
-    private static java.lang.Error createAndLogError(List<String> errorMessages) {
-        return new java.lang.Error()
+    private static Error createAndLogError(List<String> errorMessages) {
+        return new Error()
                 .errorMessages(errorMessages)
                 .status(((HttpStatus) HttpStatus.BAD_REQUEST).getReasonPhrase());
     }
@@ -34,6 +34,4 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         return new Error()
                 .status(((HttpStatus) HttpStatus.BAD_REQUEST).getReasonPhrase());
     }
-
-
 }
