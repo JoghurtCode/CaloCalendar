@@ -27,11 +27,11 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     private static Error createAndLogError(List<String> errorMessages) {
         return new Error()
                 .errorMessages(errorMessages)
-                .status(((HttpStatus) HttpStatus.BAD_REQUEST).getReasonPhrase());
+                .status(HttpStatus.BAD_REQUEST.getReasonPhrase());
     }
 
     private static Error createAndLogError() {
         return new Error()
-                .status(((HttpStatus) HttpStatus.BAD_REQUEST).getReasonPhrase());
+                .status(HttpStatus.BAD_REQUEST.getReasonPhrase());
     }
 }
