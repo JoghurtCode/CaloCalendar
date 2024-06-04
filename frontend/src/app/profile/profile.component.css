@@ -1,10 +1,26 @@
-.profile-container {
+.container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 20px;
 }
 
-.data-section, .goal-section {
+.left-panel, .right-panel {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.left-panel {
+  flex: 2;
+}
+
+.right-panel {
   flex: 1;
-  margin: 10px;
+  margin-left: 20px;
+}
+
+.data-item {
+  margin: 10px 0;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
 }
