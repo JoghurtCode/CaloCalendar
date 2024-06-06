@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
-  title: User API
-  description: API for managing users
+  title: CalCalculator API
+  description: API for CalCalculator
   version: 1.0.0
 
 servers:
@@ -87,7 +87,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-
   /userProfile/{id}:
     get:
       operationId: getUserProfileById
@@ -97,6 +96,7 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
       responses:
         '200':
           description: User found
@@ -104,37 +104,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserProfileModel'
-        '404':
-          description: User not found
-
-    put:
-      summary: Update a user by ID
-      operationId: updateUser
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      requestBody:
-        description: User data to update
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserProfileModel'
-      responses:
-        '200':
-          description: User updated successfully
+        '400':
+          description: UserProfile not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserProfileModel'
-        '404':
-          description: User not found
+                $ref: "#/components/schemas/Error"
 
     delete:
-      summary: Delete a user by ID
       operationId: deleteUser
       parameters:
         - name: id
@@ -142,11 +119,16 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
       responses:
-        '204':
+        '200':
           description: User deleted successfully
-        '404':
-          description: User not found
+        '400':
+          description: UserProfile not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
 components:
   schemas:

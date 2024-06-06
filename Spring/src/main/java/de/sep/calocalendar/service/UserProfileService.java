@@ -1,6 +1,5 @@
 package de.sep.calocalendar.service;
 
-import de.sep.calocalendar.entities.UserProfile;
 import de.sep.calocalendar.mapper.UserProfileMapper;
 import de.sep.calocalendar.mapper.UserProfileMapperImpl;
 import de.sep.calocalendar.model.UserProfileModel;
@@ -20,8 +19,8 @@ public class UserProfileService {
     @Autowired
     private final UserProfileMapper mapper = new UserProfileMapperImpl();
 
-    public Optional<Long> addUserProfile(UserProfileModel model){
-        if(model.getId() != null) throw new IllegalArgumentException("Don't give an id!");
+    public Optional<Long> addUserProfile(UserProfileModel model) {
+        if (model.getId() != null) throw new IllegalArgumentException("Don't give an id!");
 
         var entity = mapper.toEntity(model);
         entity = repo.save(entity);
@@ -31,7 +30,7 @@ public class UserProfileService {
 
     public Optional<List<UserProfileModel>> getAllUserProfiles() {
         var entities = repo.findAll();
-        if(entities.isEmpty()) throw new IllegalArgumentException("There is no UserProfile in Database");
+        if (entities.isEmpty()) throw new IllegalArgumentException("There is no UserProfile in Database");
 
         var models = entities.stream()
                 .map(mapper::toModel)
@@ -41,11 +40,11 @@ public class UserProfileService {
     }
 
     public Optional<UserProfileModel> updateUserProfile(UserProfileModel model) {
-        var newCarEntity = mapper.toEntity(model);
+        var entity = mapper.toEntity(model);
         UserProfileModel savedUserProfileModel;
 
         if (repo.existsById(model.getId())) {
-            savedUserProfileModel = mapper.toModel(repo.save(newCarEntity));
+            savedUserProfileModel = mapper.toModel(repo.save(entity));
         } else {
             throw new IllegalArgumentException("UserProfile with id: " + model.getId() + " does not exist");
         }
@@ -53,36 +52,17 @@ public class UserProfileService {
         return Optional.of(savedUserProfileModel);
     }
 
-//    public Optional<UserProfileModel> updateUserProfile(Long id, UserProfileModel userProfileModel) {
-//        UserProfile existingUserProfile = repo.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Could not find UserProfile with id " + id));
-//
-//        updateEntityFromModel(userProfileModel, existingUserProfile);
-//        UserProfile updatedUserProfile = repo.save(existingUserProfile);
-//        UserProfileModel updatedModel = mapper.toModel(updatedUserProfile);
-//        return Optional.of(updatedModel);
-//    }
-
     public Optional<UserProfileModel> getUserProfileById(Long id) {
-        UserProfile userProfile = repo.findById(id)
+        var entity = repo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find UserProfile with id " + id));
-        UserProfileModel userProfileModel = mapper.toModel(userProfile);
-        return Optional.of(userProfileModel);
+
+        return Optional.of(mapper.toModel(entity));
     }
 
     public void deleteUserProfile(Long id) {
-        if (repo.existsById(id)) {
-            repo.deleteById(id);
-        } else {
+        if (!repo.existsById(id)) {
             throw new IllegalArgumentException("Could not find UserProfile by id: " + id);
         }
-    }
-
-    private void updateEntityFromModel(UserProfileModel model, UserProfile entity) {
-        entity.setUserName(model.getUserName());
-        entity.setGender(model.getGender());
-        entity.setAge(model.getAge());
-        entity.setWeight(model.getWeight());
-        entity.setLevelOfPhysicalActivity(model.getLevelOfPhysicalActivity());
+        repo.deleteById(id);
     }
 }
