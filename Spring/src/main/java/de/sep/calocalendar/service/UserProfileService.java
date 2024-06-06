@@ -30,28 +30,44 @@ public class UserProfileService {
     }
 
     public Optional<List<UserProfileModel>> getAllUserProfiles() {
-        List<UserProfile> userProfiles = repo.findAll();
-        List<UserProfileModel> userProfileModels = userProfiles.stream()
+        var entities = repo.findAll();
+        if(entities.isEmpty()) throw new IllegalArgumentException("There is no UserProfile in Database");
+
+        var models = entities.stream()
                 .map(mapper::toModel)
                 .toList();
-        return Optional.of(userProfileModels);
+
+        return Optional.of(models);
     }
+
+    public Optional<UserProfileModel> updateUserProfile(UserProfileModel model) {
+        var newCarEntity = mapper.toEntity(model);
+        UserProfileModel savedUserProfileModel;
+
+        if (repo.existsById(model.getId())) {
+            savedUserProfileModel = mapper.toModel(repo.save(newCarEntity));
+        } else {
+            throw new IllegalArgumentException("UserProfile with id: " + model.getId() + " does not exist");
+        }
+
+        return Optional.of(savedUserProfileModel);
+    }
+
+//    public Optional<UserProfileModel> updateUserProfile(Long id, UserProfileModel userProfileModel) {
+//        UserProfile existingUserProfile = repo.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("Could not find UserProfile with id " + id));
+//
+//        updateEntityFromModel(userProfileModel, existingUserProfile);
+//        UserProfile updatedUserProfile = repo.save(existingUserProfile);
+//        UserProfileModel updatedModel = mapper.toModel(updatedUserProfile);
+//        return Optional.of(updatedModel);
+//    }
 
     public Optional<UserProfileModel> getUserProfileById(Long id) {
         UserProfile userProfile = repo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find UserProfile with id " + id));
         UserProfileModel userProfileModel = mapper.toModel(userProfile);
         return Optional.of(userProfileModel);
-    }
-
-    public Optional<UserProfileModel> updateUserProfile(Long id, UserProfileModel userProfileModel) {
-        UserProfile existingUserProfile = repo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Could not find UserProfile with id " + id));
-
-        updateEntityFromModel(userProfileModel, existingUserProfile);
-        UserProfile updatedUserProfile = repo.save(existingUserProfile);
-        UserProfileModel updatedModel = mapper.toModel(updatedUserProfile);
-        return Optional.of(updatedModel);
     }
 
     public void deleteUserProfile(Long id) {

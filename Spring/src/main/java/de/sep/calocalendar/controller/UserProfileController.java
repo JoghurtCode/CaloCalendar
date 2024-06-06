@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 @Controller
 public class UserProfileController implements UserProfileApiDelegate {
 
@@ -16,5 +18,15 @@ public class UserProfileController implements UserProfileApiDelegate {
     @Override
     public ResponseEntity<Long> addUserProfile(UserProfileModel model) {
         return ResponseEntity.of(service.addUserProfile(model));
+    }
+
+    @Override
+    public ResponseEntity<List<UserProfileModel>> getAllUserProfiles() {
+        return ResponseEntity.of(service.getAllUserProfiles());
+    }
+
+    @Override
+    public ResponseEntity<UserProfileModel> updateUserProfile(UserProfileModel model) {
+        return ResponseEntity.of(service.updateUserProfile(model));
     }
 }
