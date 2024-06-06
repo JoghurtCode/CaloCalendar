@@ -22,7 +22,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Build Angular application
-        run: npm run build -- --prod --output-path docs --base-href /CaloCalendar/
+        run: npm run build -- --configuration production --output-path docs --base-href /CaloCalendar/
         working-directory: ./frontend
 
       - name: List build directory
