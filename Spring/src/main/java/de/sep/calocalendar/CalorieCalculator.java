@@ -23,15 +23,15 @@ public class CalorieCalculator {
                                     2=gain weight
          */
 
-int calculateCalorieNeeds(int gender,double bodyweight,double height, double age, int physicalActivity, int selectedGoal) {
+public int calculateCalorieNeeds(int gender, double bodyweight, double height, double age, int physicalActivity, int selectedGoal) {
 
     double neededCalories = 0;
 
     switch (gender) {
-        case 0:
+        case 0: //male
             neededCalories = (10*bodyweight) + (6.25*height) - (5*age) + 5;
             break;
-        case 1:
+        case 1: //female
             neededCalories = (10*bodyweight) + (6.25*height) - (5*age) - 161;
             break;
         default:
