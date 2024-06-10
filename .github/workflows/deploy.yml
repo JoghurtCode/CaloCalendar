@@ -23,13 +23,13 @@ jobs:
 
       - name: Build Angular application
         run: npm run build
-        working-directory: ./frontend/dist/frontend/browser
+        working-directory: frontend
 
       - name: Upload artifact
         id: upload
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./frontend/dis
+          path: frontend/dist/frontend/browser
 
   deploy:
     needs: build
