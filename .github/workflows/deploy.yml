@@ -23,13 +23,13 @@ jobs:
 
       - name: Build Angular application
         run: npm run build
-        working-directory: frontend
+        working-directory: ./frontend
 
       - name: Upload artifact
         id: upload
         uses: actions/upload-pages-artifact@v1
         with:
-          path: frontend/dist/frontend/browser
+          path: ./frontend/dist/frontend/browser
 
   deploy:
     needs: build
@@ -38,6 +38,11 @@ jobs:
       pages: write
       id-token: write
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-pages-artifact@v1
+
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v1
