@@ -15,24 +15,21 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
         working-directory: ./frontend
 
       - name: Build Angular application
-        run: npm run build -- --configuration production --output-path docs --base-href /CaloCalendar/
-        working-directory: ./frontend
-
-      - name: List build directory
-        run: ls -R ./frontend/docs
+        run: npm run build
+        working-directory: ./frontend/dist/frontend/browser
 
       - name: Upload artifact
         id: upload
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./frontend/docs
+          path: ./frontend/dis
 
   deploy:
     needs: build
