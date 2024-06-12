@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserProfileController implements UserProfileApiDelegate {
@@ -18,22 +19,30 @@ public class UserProfileController implements UserProfileApiDelegate {
 
     @Override
     public ResponseEntity<Long> addUserProfile(UserProfileModel model) {
-        return ResponseEntity.of(service.addUserProfile(model));
+        Optional<Long> result = service.addUserProfile(model);
+        return result.map(ResponseEntity::ok)
+                     .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @Override
     public ResponseEntity<List<UserProfileModel>> getAllUserProfiles() {
-        return ResponseEntity.of(service.getAllUserProfiles());
+        Optional<List<UserProfileModel>> result = service.getAllUserProfiles();
+        return result.map(ResponseEntity::ok)
+                     .orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @Override
     public ResponseEntity<UserProfileModel> updateUserProfile(UserProfileModel model) {
-        return ResponseEntity.of(service.updateUserProfile(model));
+        Optional<UserProfileModel> result = service.updateUserProfile(model);
+        return result.map(ResponseEntity::ok)
+                     .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @Override
     public ResponseEntity<UserProfileModel> getUserProfileById(Long id) {
-        return ResponseEntity.of(service.getUserProfileById(id));
+        Optional<UserProfileModel> result = service.getUserProfileById(id);
+        return result.map(ResponseEntity::ok)
+                     .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @Override

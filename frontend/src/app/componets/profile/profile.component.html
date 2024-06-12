@@ -1,15 +1,19 @@
 <div class="container">
   <div class="left-panel">
     <h2>Daten</h2>
-    <div class="data-item">Data 1</div>
-    <div class="data-item">Data 2</div>
-    <div class="data-item">Data 3</div>
-    <div class="data-item">Data 4</div>
+    <div *ngFor="let profile of profiles" class="data-item">
+      <p>ID: {{ profile.id }}</p>
+      <p>Name: {{ profile.userName }}</p>
+      <p>Geschlecht: {{ profile.gender }}</p>
+      <p>Alter: {{ profile.age }}</p>
+      <p>Gewicht: {{ profile.weight }}</p>
+      <p>Level der körperlichen Aktivität: {{ profile.levelOfPhysicalActivity }}</p>
+    </div>
   </div>
   <div class="right-panel">
     <h2>Profil/Steckbrief</h2>
-    <p>Ziel: Abnehmen</p>
-    <p>Gewicht: 70kg</p>
-    <p>Zeitraum: 6 Monate</p>
+    <p *ngIf="profiles.length > 0">Ziel: {{ profiles[0].goal }}</p>
+    <p *ngIf="profiles.length > 0">Gewicht: {{ profiles[0].weight }} kg</p>
+    <p *ngIf="profiles.length > 0">Zeitraum: {{ profiles[0].timeFrame }}</p>
   </div>
 </div>
