@@ -25,6 +25,7 @@ import {HistoryComponent} from "./componets/history/history.component";
 import {ProfileComponent} from "./componets/profile/profile.component";
 import {FridgeComponent} from "./componets/fridge/fridge.component";
 import {MealsComponent} from "./componets/meals/meals.component";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import {MealsComponent} from "./componets/meals/meals.component";
     MatListModule,
     MatGridListModule
   ],
-  providers: [ProfileService],
+  providers: [ProfileService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
