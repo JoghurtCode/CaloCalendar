@@ -14,12 +14,12 @@ import { MatListModule } from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HistoryComponent } from './history/history.component';
-import { ProfileComponent } from './profile/profile.component';
-import { FridgeComponent } from './fridge/fridge.component';
-import { MealsComponent } from './meals/meals.component';
-import { RecipesComponent } from './recipes/recipes.component';
+import { DashboardComponent } from './componets/dashboard/dashboard.component';
+import { HistoryComponent } from './componets/history/history.component';
+import { ProfileComponent } from './componets/profile/profile.component';
+import { FridgeComponent } from './componets/fridge/fridge.component';
+import { MealsComponent } from './componets/meals/meals.component';
+import { RecipesComponent } from './componets/recipes/recipes.component';
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 
 
