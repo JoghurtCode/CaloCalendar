@@ -40,7 +40,7 @@ public class UserProfileServiceTest {
         userProfile.setUserName("jannBeier");
         userProfile.setGender(1);
         userProfile.setAge(30);
-        userProfile.setWeight(new Double(75.0));
+        userProfile.setWeight(75);
         userProfile.setLevelOfPhysicalActivity(3);
 
         userProfileModel = new UserProfileModel();
@@ -48,7 +48,7 @@ public class UserProfileServiceTest {
         userProfileModel.setUserName("jannBeier");
         userProfileModel.setGender(1);
         userProfileModel.setAge(30);
-        userProfileModel.setWeight(new Double(75.0));
+        userProfileModel.setWeight(75);
         userProfileModel.setLevelOfPhysicalActivity(3);
     }
 
