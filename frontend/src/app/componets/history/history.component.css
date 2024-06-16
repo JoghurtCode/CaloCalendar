@@ -1,41 +1,47 @@
-.history-container {
+.calendar {
   padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.history-grid {
+.calendar-navigation {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.weekdays {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
-  border: 1px solid black;
-  padding: 10px;
 }
 
-.day {
-  width: 50px;
-  height: 50px;
-  background-color: #e0e0e0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.weekday {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.chart {
+  margin-top: 20px;
+}
+
+.current-date {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #666;
+}
+
+button {
   margin: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.details-grid {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.details {
-  background-color: #f5f5f5;
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid black;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-around;
 }
