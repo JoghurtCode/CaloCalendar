@@ -1,20 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js/auto';
 import 'chart.js';
-
-declare module 'chart.js' {
-  interface TickOptions {
-    beginAtZero?: boolean;
-  }
-}
-
+declare module 'chart.js' { interface TickOptions { beginAtZero?: boolean; } }
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  view: 'week' | 'month' | 'year' = 'week'; // default view is week
+  view: 'week' | 'month' | 'year' = 'week'; // Standardansicht ist Woche
   weekDates: Date[] = [];
   currentDate: Date = new Date();
   chart: Chart | undefined;
@@ -33,18 +27,18 @@ export class HistoryComponent implements OnInit {
   }
 
   generateCharts(): void {
-    // Calculate the dates for the current week
+    // Berechne die Daten für die aktuelle Woche
     const firstDay = new Date(this.currentDate);
-    firstDay.setDate(firstDay.getDate() - firstDay.getDay() + 1); // Monday
+    firstDay.setDate(firstDay.getDate() - firstDay.getDay() + 1); // Montag
     const lastDay = new Date(this.currentDate);
-    lastDay.setDate(lastDay.getDate() - lastDay.getDay() + 7); // Sunday
+    lastDay.setDate(lastDay.getDate() - lastDay.getDay() + 7); // Sonntag
     this.weekDates = this.getDatesBetween(firstDay, lastDay);
 
-    // Dummy data for demonstration purposes
+    // Dummy-Daten zu Demonstrationszwecken
     const caloriesData = [2000, 1800, 2200, 2400, 2100, 1900, 2300];
     const weightData = [70, 69.5, 69.8, 69.3, 68.9, 68.7, 68.5];
 
-    // Use Chart.js to create combined chart
+    // Verwende Chart.js, um ein kombiniertes Diagramm zu erstellen
     this.createCombinedChart(this.weekDates.map(date => date.toLocaleDateString()), caloriesData, weightData);
   }
 

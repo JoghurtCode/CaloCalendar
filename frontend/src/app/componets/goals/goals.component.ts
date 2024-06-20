@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ViewStateService } from '../../services/view-state.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-goals',
+  templateUrl: './goals.component.html',
+  styleUrls: ['./goals.component.css']
 })
-export class DashboardComponent {
+export class GoalsComponent {
   constructor(public viewState: ViewStateService) {}
 
   openDetailView(componentName: string): void {

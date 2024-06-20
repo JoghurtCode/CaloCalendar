@@ -29,7 +29,8 @@ export class ProfileComponent implements OnInit {
     this.profileService.getUserProfiles().subscribe(
       (data: UserProfile[]) => {
         this.profiles = data.length > 0 ? data : this.profiles;
-      },
+           console.log("Spring Boot API Profiles: ", this.profiles);
+        },
       error => {
         console.error('Error loading profiles', error);
       }

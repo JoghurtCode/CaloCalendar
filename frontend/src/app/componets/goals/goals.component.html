@@ -1,0 +1,13 @@
+<div class="goals-container">
+  <h3>Aktuelles Ziel: Gewicht verlieren</h3>
+  <p>Fortschritt: 75kg</p>
+  <button mat-raised-button color="primary" (click)="openDetailView('goalDetails')">Neues Gewicht</button>
+
+  <div *ngIf="viewState.activeComponent === 'goalDetails'" class="detail-view">
+    <div class="detail-content">
+      <button class="close-button" (click)="closeDetailView()">X</button>
+      <h2>Gewichtsziel Detailansicht</h2>
+      <p>Details zu deinem Gewichtsziel...</p>
+    </div>
+  </div>
+</div>
