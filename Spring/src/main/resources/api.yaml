@@ -117,7 +117,7 @@ components:
           type: integer
         weight:
           type: number
-          format: double
+          format: float
         levelOfPhysicalActivity:
           type: integer
       required:

@@ -48,7 +48,7 @@ public class UserProfileServiceTest {
         userProfileModel.setUserName("jannBeier");
         userProfileModel.setGender(1);
         userProfileModel.setAge(30);
-        userProfileModel.setWeight(75);
+        userProfileModel.setWeight(75.0F);
         userProfileModel.setLevelOfPhysicalActivity(3);
     }
 

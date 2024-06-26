@@ -27,7 +27,7 @@ public class UserProfileRepositoryTest {
         userProfile.setUserName("mariusSchmitz");
         userProfile.setGender(1);
         userProfile.setAge(30);
-        userProfile.setWeight(75.0);
+        userProfile.setWeight(75.0F);
         userProfile.setLevelOfPhysicalActivity(3);
     }
 
@@ -54,7 +54,7 @@ public class UserProfileRepositoryTest {
         anotherUserProfile.setUserName("marieSchmitz");
         anotherUserProfile.setGender(1);
         anotherUserProfile.setAge(28);
-        anotherUserProfile.setWeight(65.0);
+        anotherUserProfile.setWeight(65.0F);
         anotherUserProfile.setLevelOfPhysicalActivity(2);
 
         userProfileRepository.save(anotherUserProfile);
