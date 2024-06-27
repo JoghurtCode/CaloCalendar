@@ -384,12 +384,32 @@ components:
         levelOfPhysicalActivity:
           type: integer
           example: 2
+        goal:
+          $ref: '#/components/schemas/GoalModel'
       required:
         - userName
         - gender
         - age
         - weight
         - levelOfPhysicalActivity
+        - goal
+    GoalModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        goalWeight:
+          type: integer
+          example: 70000
+        goalSpeed:
+          type: integer
+          example: 2
+      required:
+        - id
+        - goalWeight
+        - goalSpeed
     GroceryItemModel:
       type: object
       properties:
