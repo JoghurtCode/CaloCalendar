@@ -1,6 +1,7 @@
 package de.sep.calocalendar.service;
 
 import de.sep.calocalendar.mapper.UserProfileMapper;
+import de.sep.calocalendar.mapper.UserProfileMapperImpl;
 import de.sep.calocalendar.model.UserProfileModel;
 import de.sep.calocalendar.repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserProfileService {
@@ -17,7 +17,7 @@ public class UserProfileService {
     private UserProfileRepository repo;
 
     @Autowired
-    private UserProfileMapper mapper;
+    private final UserProfileMapper mapper = new UserProfileMapperImpl();
 
     public Optional<Long> addUserProfile(UserProfileModel model) {
         if (model.getId() != null) throw new IllegalArgumentException("Don't give an id!");
@@ -34,7 +34,7 @@ public class UserProfileService {
 
         var models = entities.stream()
                 .map(mapper::toModel)
-                .collect(Collectors.toList());
+                .toList();
 
         return Optional.of(models);
     }
