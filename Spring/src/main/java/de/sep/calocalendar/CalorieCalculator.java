@@ -26,6 +26,7 @@ public class CalorieCalculator {
      * @param selectedGoal      Goal (0 = lose weight, 1 = hold weight, 2 = gain weight).
      * @return                  The calculated daily calorie needs.
      */
+
     public int calculateCalorieNeeds(int gender, double bodyweight, double height, double age, int physicalActivity, int selectedGoal) {
 
         double neededCalories = calculateBasalMetabolicRate(gender, bodyweight, height, age);
@@ -71,4 +72,60 @@ public class CalorieCalculator {
                 throw new IllegalArgumentException("Invalid goal: " + selectedGoal);
         }
     }
-}
+
+    public double calculateWeeksUntilTargetWeightReached(int rate, int currentWeight, int targetWeight, int calculatedCalories){ //get currentWeight from calculateCalorieNeeds
+        /*
+        rate = 0 -> slow
+        rate = 1 -> normal
+        rate = 2 -> fast
+         */
+        int weightdiff = 0;
+        double weeksUntilGoalReached = 0;
+
+        if(currentWeight == targetWeight){ //gewicht halten
+            return calculatedCalories;
+
+        }else if(currentWeight < targetWeight){ //zunehmen
+            weightdiff = targetWeight-currentWeight;
+                switch(rate){
+                    case 0:
+                        calculatedCalories = calculatedCalories - 200; //+0.3kg/week
+                        weeksUntilGoalReached = weightdiff/0.4;
+                        break;
+                    case 1:
+                        calculatedCalories = calculatedCalories; //+0.5kg/week -> default
+                        weeksUntilGoalReached = weightdiff/0.6;
+                        break;
+                    case 2:
+                        calculatedCalories = calculatedCalories + 200; //+0.7kg/week
+                        weeksUntilGoalReached = weightdiff/0.8;
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid rate: " + rate);
+                }
+
+            }else if(currentWeight > targetWeight){ //abnehmen
+                weightdiff = currentWeight-targetWeight;
+                switch(rate){
+                    case 0:
+                        calculatedCalories = calculatedCalories + 200; //-0.3kg/week
+                        weeksUntilGoalReached = weightdiff/0.4;
+                        break;
+                    case 1:
+                        calculatedCalories = calculatedCalories; //-0.5kg/week -> default
+                        weeksUntilGoalReached = weightdiff/0.6;
+                        break;
+                    case 2:
+                        calculatedCalories = calculatedCalories - 200; //-0.7kg/week
+                        weeksUntilGoalReached = weightdiff/0.8;
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Invalid rate: " + rate);
+                }
+            }
+        return weeksUntilGoalReached;
+        }
+
+    }
+
+
