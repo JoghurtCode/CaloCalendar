@@ -73,7 +73,7 @@ public class CalorieCalculator {
         }
     }
 
-    public double calculateWeightChangePerWeek(int rate, int currentWeight, int targetWeight, int calculatedCalories){ //get currentWeight from calculateCalorieNeeds
+    public double calculateWeeksUntilTargetWeightReached(int rate, int currentWeight, int targetWeight, int calculatedCalories){ //get currentWeight from calculateCalorieNeeds
         /*
         rate = 0 -> slow
         rate = 1 -> normal
@@ -102,7 +102,6 @@ public class CalorieCalculator {
                         break;
                     default:
                         throw new IllegalArgumentException("Invalid rate: " + rate);
-                        break;
                 }
 
             }else if(currentWeight > targetWeight){ //abnehmen
@@ -122,13 +121,11 @@ public class CalorieCalculator {
                         break;
                     default:
                         throw new IllegalArgumentException("Invalid rate: " + rate);
-                        break;
                 }
             }
-
-
+        return weeksUntilGoalReached;
         }
 
     }
 
-}
+
