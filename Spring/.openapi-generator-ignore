@@ -1,2 +1,0 @@
-# Ignoriere die generierte Testklasse
-target/generated-sources/openapi/src/test/java/org/openapitools/OpenApiGeneratorApplicationTests.java
