@@ -401,8 +401,9 @@ components:
           format: int64
           example: 1
         goalWeight:
-          type: integer
-          example: 70000
+          type: number
+          format: float
+          example: 70.0F
         goalSpeed:
           type: integer
           example: 2

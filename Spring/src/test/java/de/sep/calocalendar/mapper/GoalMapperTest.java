@@ -18,12 +18,12 @@ public class GoalMapperTest {
     void Setup() {
         model = new GoalModel();
         model.setId(1L);
-        model.setGoalWeight(70000);
+        model.setGoalWeight(70.0F);
         model.setGoalSpeed(10);
 
         entity = new Goal();
         entity.setId(1L);
-        entity.setGoalWeight(70000);
+        entity.setGoalWeight(70.0F);
         entity.setGoalSpeed(10);
     }
 

@@ -17,6 +17,6 @@ public class Goal {
     @Id
     private Long id;
 
-    private int goalWeight;
+    private float goalWeight;
     private int goalSpeed;
 }

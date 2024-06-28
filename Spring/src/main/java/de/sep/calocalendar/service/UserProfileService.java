@@ -1,7 +1,6 @@
 package de.sep.calocalendar.service;
 
 import de.sep.calocalendar.mapper.UserProfileMapper;
-import de.sep.calocalendar.mapper.UserProfileMapperImpl;
 import de.sep.calocalendar.model.UserProfileModel;
 import de.sep.calocalendar.repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,9 @@ public class UserProfileService {
     private UserProfileRepository repo;
 
     @Autowired
-    private final UserProfileMapper mapper = new UserProfileMapperImpl();
+    private UserProfileMapper mapper;
 
-    public Optional<Long> addUserProfile(UserProfileModel model) {
+    public Optional<Long> createUserProfile(UserProfileModel model) {
         if (model.getId() != null) throw new IllegalArgumentException("Don't give an id!");
 
         var entity = mapper.toEntity(model);

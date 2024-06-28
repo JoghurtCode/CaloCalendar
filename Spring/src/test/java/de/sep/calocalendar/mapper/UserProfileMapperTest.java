@@ -32,7 +32,7 @@ public class UserProfileMapperTest {
     void Setup() {
         goalModel = new GoalModel();
         goalModel.setId(1L);
-        goalModel.setGoalWeight(70000);
+        goalModel.setGoalWeight(70.0F);
         goalModel.setGoalSpeed(10);
 
         goalEntity = new Goal();
