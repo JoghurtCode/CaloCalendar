@@ -17,7 +17,7 @@ public class UserProfile {
     private String userName;
     private int gender;
     private int age;
-    private int weight;
+    private float weight;
     private int levelOfPhysicalActivity;
 
     @OneToOne(cascade = CascadeType.ALL)

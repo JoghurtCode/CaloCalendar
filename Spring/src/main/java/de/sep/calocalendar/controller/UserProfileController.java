@@ -18,7 +18,7 @@ public class UserProfileController implements UserProfileApiDelegate {
 
     @Override
     public ResponseEntity<Long> addUserProfile(UserProfileModel model) {
-        return ResponseEntity.of(service.addUserProfile(model));
+        return ResponseEntity.of(service.createUserProfile(model));
     }
 
     @Override

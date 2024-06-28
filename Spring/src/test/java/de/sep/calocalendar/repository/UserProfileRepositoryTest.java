@@ -24,10 +24,10 @@ public class UserProfileRepositoryTest {
     @BeforeEach
     public void setUp() {
         userProfile = new UserProfile();
-        userProfile.setUserName("JohnDoe");
+        userProfile.setUserName("mariusSchmitz");
         userProfile.setGender(1);
         userProfile.setAge(30);
-        userProfile.setWeight(75000);
+        userProfile.setWeight(75.0F);
         userProfile.setLevelOfPhysicalActivity(3);
     }
 
@@ -51,10 +51,10 @@ public class UserProfileRepositoryTest {
         userProfileRepository.save(userProfile);
 
         UserProfile anotherUserProfile = new UserProfile();
-        anotherUserProfile.setUserName("JaneDoe");
+        anotherUserProfile.setUserName("marieSchmitz");
         anotherUserProfile.setGender(1);
         anotherUserProfile.setAge(28);
-        anotherUserProfile.setWeight(65000);
+        anotherUserProfile.setWeight(65.0F);
         anotherUserProfile.setLevelOfPhysicalActivity(2);
 
         userProfileRepository.save(anotherUserProfile);

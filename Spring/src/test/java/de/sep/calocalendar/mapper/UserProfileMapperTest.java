@@ -32,7 +32,7 @@ public class UserProfileMapperTest {
     void Setup() {
         goalModel = new GoalModel();
         goalModel.setId(1L);
-        goalModel.setGoalWeight(70000);
+        goalModel.setGoalWeight(70.0F);
         goalModel.setGoalSpeed(10);
 
         goalEntity = new Goal();
@@ -44,7 +44,7 @@ public class UserProfileMapperTest {
         model.setId(1L);
         model.setUserName("TestUser");
         model.setAge(25);
-        model.setWeight(75000);
+        model.setWeight(75.0F);
         model.setGender(1);
         model.setLevelOfPhysicalActivity(2);
         model.setGoal(goalModel);
@@ -53,7 +53,7 @@ public class UserProfileMapperTest {
         entity.setId(1L);
         entity.setUserName("TestUser");
         entity.setAge(25);
-        entity.setWeight(75000);
+        entity.setWeight(75.0F);
         entity.setGender(1);
         entity.setLevelOfPhysicalActivity(2);
         entity.setGoal(goalEntity);

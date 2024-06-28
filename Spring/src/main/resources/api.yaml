@@ -379,8 +379,8 @@ components:
           type: integer
           example: 25
         weight:
-          type: integer
-          example: 75000
+          type: number
+          format: float
         levelOfPhysicalActivity:
           type: integer
           example: 2
@@ -401,8 +401,9 @@ components:
           format: int64
           example: 1
         goalWeight:
-          type: integer
-          example: 70000
+          type: number
+          format: float
+          example: 70.0F
         goalSpeed:
           type: integer
           example: 2
