@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Frontend to GitHub Pages
 
 on:
   push:
@@ -9,25 +9,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
         run: npm install
         working-directory: ./frontend
 
-      - name: Build Angular
+      - name: Build Angular application
         run: npm run build
         working-directory: ./frontend
 
-      - name: List Build Directory
-        run: ls -R ./frontend/dist/frontend
-
-      - name: Upload Artifact
+      - name: Upload artifact
         id: upload
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./frontend/dist/frontend
+          path: ./frontend/dist/frontend/browser
 
   deploy:
     needs: build

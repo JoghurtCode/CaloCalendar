@@ -1,9 +1,6 @@
 package de.sep.calocalendar.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -23,4 +20,7 @@ public class UserProfile {
     private float weight;
     private int levelOfPhysicalActivity;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "goal_id", referencedColumnName = "id")
+    private Goal goal;
 }

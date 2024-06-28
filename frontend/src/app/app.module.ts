@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -11,16 +12,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HistoryComponent } from './history/history.component';
-import { ProfileComponent } from './profile/profile.component';
-import { FridgeComponent } from './fridge/fridge.component';
-import { MealsComponent } from './meals/meals.component';
-import { RecipesComponent } from './recipes/recipes.component';
 
+import { ProfileService } from './services/profile.service';
+import { RecipesComponent } from './componets/recipes/recipes.component';
+import { DashboardComponent } from './componets/dashboard/dashboard.component';
+import { HistoryComponent } from './componets/history/history.component';
+import { ProfileComponent } from './componets/profile/profile.component';
+import { FridgeComponent } from './componets/fridge/fridge.component';
+import { MealsComponent } from './componets/meals/meals.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ViewStateService } from './services/view-state.service';
+import { GoalsComponent } from './componets/goals/goals.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +36,14 @@ import { RecipesComponent } from './recipes/recipes.component';
     ProfileComponent,
     FridgeComponent,
     MealsComponent,
-    RecipesComponent
+    RecipesComponent,
+    GoalsComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -46,9 +55,14 @@ import { RecipesComponent } from './recipes/recipes.component';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule
   ],
-  providers: [],
+  providers: [
+    ProfileService,
+    ViewStateService,
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
