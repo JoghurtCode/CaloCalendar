@@ -6,8 +6,20 @@
 }
 
 .calendar-navigation {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
+  position: relative;
+}
+
+.navigation-buttons {
+  text-align: center;
+}
+
+.dropdown-container {
+  position: absolute;
+  right: 0;
 }
 
 .chart-container {
@@ -16,6 +28,7 @@
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .weekdays {
@@ -33,6 +46,15 @@
 
 .chart {
   margin-top: 20px;
+  position: relative;
+}
+
+.view-title {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px; /* Platz nach unten hinzufügen */
 }
 
 .current-date {
@@ -44,4 +66,17 @@
 
 button {
   margin: 5px;
+}
+
+mat-form-field {
+  width: 200px;
+}
+
+/* Neue CSS-Regeln für die Dropdown-Schriftfarbe */
+.mat-select-value-text, .mat-option-text {
+  color: #1976d2; /* Dieselbe Farbe wie die Buttons */
+}
+
+.mat-select-placeholder {
+  color: #1976d2 !important; /* Optionale Farbe für den Platzhalter */
 }

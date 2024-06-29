@@ -3,21 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weekly Calendar with Chart</title>
+  <title>History Chart</title>
   <link rel="stylesheet" href="./history.component.css">
 </head>
 <body>
   <div class="calendar">
     <div class="calendar-navigation">
-      <button mat-raised-button color="primary" (click)="previousWeek()">Vorherige Woche</button>
-      <button mat-raised-button color="primary" (click)="nextWeek()">Nächste Woche</button>
+      <div class="navigation-buttons">
+        <button mat-raised-button color="primary" (click)="previous()">Zurück</button>
+        <button mat-raised-button color="primary" (click)="next()">Vorwärts</button>
+      </div>
+      <div class="dropdown-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Ansicht wählen</mat-label>
+          <mat-select [(value)]="view" (selectionChange)="changeView($event.value)">
+            <mat-option value="week">Woche</mat-option>
+            <mat-option value="month">Monat</mat-option>
+            <mat-option value="year">Jahr</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
     <div class="chart-container">
-      <div class="weekdays">
+      <div class="weekdays" *ngIf="view === 'week'">
         <div class="weekday" *ngFor="let day of weekDates">
           <div>{{ day | date: 'EEEE' }}</div>
         </div>
       </div>
+      <div class="view-title" *ngIf="view !== 'week'">{{ getViewTitle() }}</div>
       <div class="chart">
         <canvas id="combinedChart"></canvas>
       </div>

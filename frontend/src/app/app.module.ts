@@ -13,6 +13,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';  // <--- Hinzugefügt
+import { MatOptionModule } from '@angular/material/core';   // <--- Hinzugefügt
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +40,6 @@ import { GoalsComponent } from './componets/goals/goals.component';
     MealsComponent,
     RecipesComponent,
     GoalsComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -56,7 +57,9 @@ import { GoalsComponent } from './componets/goals/goals.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSelectModule,  // <--- Hinzugefügt
+    MatOptionModule   // <--- Hinzugefügt
   ],
   providers: [
     ProfileService,

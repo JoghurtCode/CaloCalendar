@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js/auto';
 import 'chart.js';
-declare module 'chart.js' { interface TickOptions { beginAtZero?: boolean; } }
+
+declare module 'chart.js' {
+  interface TickOptions {
+    beginAtZero?: boolean;
+  }
+}
+
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -10,6 +16,8 @@ declare module 'chart.js' { interface TickOptions { beginAtZero?: boolean; } }
 export class HistoryComponent implements OnInit {
   view: 'week' | 'month' | 'year' = 'week'; // Standardansicht ist Woche
   weekDates: Date[] = [];
+  monthDates: Date[] = [];
+  yearMonths: string[] = [];
   currentDate: Date = new Date();
   chart: Chart | undefined;
 
@@ -27,19 +35,57 @@ export class HistoryComponent implements OnInit {
   }
 
   generateCharts(): void {
-    // Berechne die Daten für die aktuelle Woche
+    if (this.view === 'week') {
+      this.generateWeeklyChart();
+    } else if (this.view === 'month') {
+      this.generateMonthlyChart();
+    } else if (this.view === 'year') {
+      this.generateYearlyChart();
+    }
+  }
+
+  generateWeeklyChart(): void {
     const firstDay = new Date(this.currentDate);
     firstDay.setDate(firstDay.getDate() - firstDay.getDay() + 1); // Montag
     const lastDay = new Date(this.currentDate);
     lastDay.setDate(lastDay.getDate() - lastDay.getDay() + 7); // Sonntag
     this.weekDates = this.getDatesBetween(firstDay, lastDay);
 
-    // Dummy-Daten zu Demonstrationszwecken
+    // Dummy-Daten für Kalorien und Gewicht
     const caloriesData = [2000, 1800, 2200, 2400, 2100, 1900, 2300];
     const weightData = [70, 69.5, 69.8, 69.3, 68.9, 68.7, 68.5];
 
-    // Verwende Chart.js, um ein kombiniertes Diagramm zu erstellen
     this.createCombinedChart(this.weekDates.map(date => date.toLocaleDateString()), caloriesData, weightData);
+  }
+
+  generateMonthlyChart(): void {
+    const firstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
+    const lastDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 0);
+    this.monthDates = this.getDatesBetween(firstDay, lastDay);
+
+    // Dummy-Daten für Kalorien und Gewicht (pro Tag im Monat)
+    const daysInMonth = new Array(this.monthDates.length).fill(0).map((_, i) => i + 1);
+    const caloriesData = daysInMonth.map(() => Math.floor(Math.random() * 1000 + 1500));
+    const weightData = daysInMonth.map(() => Math.random() * 5 + 65);
+
+    this.createCombinedChart(this.monthDates.map(date => date.toLocaleDateString()), caloriesData, weightData);
+  }
+
+  generateYearlyChart(): void {
+    const firstDay = new Date(this.currentDate.getFullYear(), 0, 1);
+    const lastDay = new Date(this.currentDate.getFullYear(), 11, 31);
+    const yearDates = this.getDatesBetween(firstDay, lastDay);
+
+    // Dummy-Daten für Kalorien und Gewicht (pro Monat im Jahr)
+    const monthsInYear = new Array(12).fill(0).map((_, i) => i + 1);
+    const caloriesData = monthsInYear.map(() => Math.floor(Math.random() * 30000 + 50000));
+    const weightData = monthsInYear.map(() => Math.random() * 20 + 50);
+
+    this.yearMonths = yearDates
+      .filter((_, i) => i % 30 === 0)
+      .map(date => date.toLocaleDateString('default', { month: 'short' }));
+
+    this.createCombinedChart(this.yearMonths, caloriesData, weightData);
   }
 
   createCombinedChart(labels: string[], caloriesData: number[], weightData: number[]): void {
@@ -109,13 +155,41 @@ export class HistoryComponent implements OnInit {
     return dates;
   }
 
-  previousWeek(): void {
-    this.currentDate.setDate(this.currentDate.getDate() - 7);
+  previous(): void {
+    if (this.view === 'week') {
+      this.currentDate.setDate(this.currentDate.getDate() - 7);
+    } else if (this.view === 'month') {
+      this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+    } else if (this.view === 'year') {
+      this.currentDate.setFullYear(this.currentDate.getFullYear() - 1);
+    }
     this.generateCharts();
   }
 
-  nextWeek(): void {
-    this.currentDate.setDate(this.currentDate.getDate() + 7);
+  next(): void {
+    if (this.view === 'week') {
+      this.currentDate.setDate(this.currentDate.getDate() + 7);
+    } else if (this.view === 'month') {
+      this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+    } else if (this.view === 'year') {
+      this.currentDate.setFullYear(this.currentDate.getFullYear() + 1);
+    }
     this.generateCharts();
+  }
+
+  getViewTitle(): string {
+    if (this.view === 'month') {
+      return this.currentDate.toLocaleDateString('default', { month: 'long', year: 'numeric' });
+    } else if (this.view === 'year') {
+      return this.currentDate.getFullYear().toString();
+    }
+    return '';
+  }
+  
+
+  getMonthName(monthIndex: number): string {
+    const monthNames = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+                        'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+    return monthNames[monthIndex];
   }
 }
