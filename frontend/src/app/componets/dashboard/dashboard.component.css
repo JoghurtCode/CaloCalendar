@@ -11,19 +11,19 @@
   border-radius: 8px;
   padding: 16px;
   text-align: center;
-  flex: 1 1 30%; /* For 3 items per row on desktop */
-  min-width: 200px; /* Adjust as needed */
+  flex: 1 1 30%;
+  min-width: 200px;
 }
 
-/* Responsive design for smaller screens */
+
 @media (max-width: 768px) {
   .dashboard-item {
-    flex: 1 1 45%; /* For 2 items per row on tablet */
+    flex: 1 1 45%;
   }
 }
 
 @media (max-width: 480px) {
   .dashboard-item {
-    flex: 1 1 100%; /* For 1 item per row on mobile */
+    flex: 1 1 100%;
   }
 }
