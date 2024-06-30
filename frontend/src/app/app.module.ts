@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import {MatNativeDateModule, MatOption} from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 
@@ -27,6 +27,7 @@ import { MealsComponent } from './componets/meals/meals.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ViewStateService } from './services/view-state.service';
 import { GoalsComponent } from './componets/goals/goals.component';
+import {MatSelect} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,9 @@ import { GoalsComponent } from './componets/goals/goals.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSelect,
+    MatOption
   ],
   providers: [
     ProfileService,

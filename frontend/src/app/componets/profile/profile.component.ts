@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ProfileService } from '../../services/profile.service';
-import { UserProfile } from '../../models/user-profile.model';
+import {Component, OnInit} from '@angular/core';
+import {ProfileService} from '../../services/profile.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -8,29 +8,31 @@ import { UserProfile } from '../../models/user-profile.model';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profiles: UserProfile[] = [{
-    id: 0,
-    userName: 'Standardname',
-    gender: 0,
-    age: 0,
-    weight: 0,
-    levelOfPhysicalActivity: 0,
-    goal: 'Standardziel',
-    timeFrame: 'Standardzeitraum'
-  }];
 
-  constructor(private profileService: ProfileService) { }
+  profile: any
+
+  constructor(private profileService: ProfileService) {
+  }
 
   ngOnInit(): void {
     this.loadProfiles();
   }
-
+  updateProfile(): void {
+    this.profileService.updateUserProfile(this.profile).subscribe(
+      (data: any) => {
+        this.profile = data;
+      },
+      error => {
+        console.error('Error updating profile', error);
+      }
+    );
+  }
   loadProfiles(): void {
-    this.profileService.getUserProfiles().subscribe(
-      (data: UserProfile[]) => {
-        this.profiles = data.length > 0 ? data : this.profiles;
-           console.log("Spring Boot API Profiles: ", this.profiles);
-        },
+    this.profileService.getUserProfileById(1).subscribe(
+      (data: any[]) => {
+        this.profile = data;
+
+      },
       error => {
         console.error('Error loading profiles', error);
       }

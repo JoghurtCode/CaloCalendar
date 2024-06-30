@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserProfile } from '../models/user-profile.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
-  getUserProfiles(): Observable<UserProfile[]> {
-    return this.http.get<UserProfile[]>(`${this.baseUrl}/userProfile`);
+  getUserProfiles(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/userProfile`);
   }
 
-  getUserProfileById(id: number): Observable<UserProfile> {
-    return this.http.get<UserProfile>(`${this.baseUrl}/userProfile/${id}`);
+  getUserProfileById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/userProfile/${id}`);
   }
 
-  createUserProfile(userProfile: UserProfile): Observable<UserProfile> {
-    return this.http.post<UserProfile>(`${this.baseUrl}/userProfile`, userProfile);
+  createUserProfile(userProfile: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/userProfile`, userProfile);
   }
 
-  updateUserProfile(userProfile: UserProfile): Observable<UserProfile> {
-    return this.http.put<UserProfile>(`${this.baseUrl}/userProfile`, userProfile);
+  updateUserProfile(userProfile: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/userProfile`, userProfile);
   }
 
   deleteUserProfile(id: number): Observable<void> {

@@ -1,37 +1,31 @@
 <div class="container">
   <div class="left-panel">
     <h2>Daten</h2>
-    <div *ngIf="profiles.length > 0; else noData" class="data-item">
-      <div *ngFor="let profile of profiles">
-        <p>ID: {{ profile.id }}</p>
-        <p>Name: {{ profile.userName }}</p>
-        <p>Geschlecht: {{ profile.gender }}</p>
-        <p>Alter: {{ profile.age }}</p>
-        <p>Gewicht: {{ profile.weight }}</p>
-        <p>Level der körperlichen Aktivität: {{ profile.levelOfPhysicalActivity }}</p>
-      </div>
-    </div>
-    <ng-template #noData>
-      <p>Keine Daten verfügbar</p>
-      <p>ID: 0</p>
-      <p>Name: Standardname</p>
-      <p>Geschlecht: 0</p>
-      <p>Alter: 0</p>
-      <p>Gewicht: 0</p>
-      <p>Level der körperlichen Aktivität: 0</p>
-    </ng-template>
+    <mat-form-field>
+      <mat-label>name</mat-label>
+      <input matInput [(ngModel)]="profile.userName" name="userName">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label> age</mat-label>
+      <input matInput [(ngModel)]="profile.age" name="age">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>weight</mat-label>
+      <input matInput [(ngModel)]="profile.weight" name="weight">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>gender</mat-label>
+      <mat-select [(ngModel)]="profile.gender">
+        <mat-option [value]="1" >male</mat-option>
+        <mat-option [value]="2" >Female</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="updateProfile()">Update</button>
   </div>
-  <div class="right-panel">
-    <h2>Profil/Steckbrief</h2>
-    <div *ngIf="profiles.length > 0; else defaultProfile">
-      <p>Ziel: {{ profiles[0].goal }}</p>
-      <p>Gewicht: {{ profiles[0].weight }} kg</p>
-      <p>Zeitraum: {{ profiles[0].timeFrame }}</p>
-    </div>
-    <ng-template #defaultProfile>
-      <p>Ziel: Standardziel</p>
-      <p>Gewicht: 0 kg</p>
-      <p>Zeitraum: Standardzeitraum</p>
-    </ng-template>
-  </div>
+
+
 </div>
