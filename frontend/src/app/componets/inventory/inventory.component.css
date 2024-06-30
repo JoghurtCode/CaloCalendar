@@ -1,0 +1,33 @@
+
+/* Add New Button */
+.add-new-button {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-new-button:hover {
+  transform: translateY(-5px);
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+}
+
+th.mat-header-cell {
+  font-weight: bold;
+}
+
+td.mat-cell, th.mat-header-cell {
+  padding: 8px;
+}
+
+button.mat-icon-button {
+  padding: 0;
+  margin: 0 5px;
+}

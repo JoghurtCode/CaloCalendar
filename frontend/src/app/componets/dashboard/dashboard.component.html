@@ -1,36 +1,30 @@
 <div class="dashboard-container">
-  <div class="grid-container">
-    <div class="grid-item" (click)="openDetailView('goals')">
-      <app-goals></app-goals>
-    </div>
-    <div class="grid-item" (click)="openDetailView('profile')">
-      <app-profile></app-profile>
-    </div>
-    <div class="grid-item" (click)="openDetailView('history')">
-      <app-history></app-history>
-    </div>
-    <div class="grid-item" (click)="openDetailView('fridge')">
-      <app-fridge></app-fridge>
-    </div>
-    <div class="grid-item" (click)="openDetailView('meals')">
-      <app-meals></app-meals>
-    </div>
-    <div class="grid-item" (click)="openDetailView('recipes')">
-      <app-recipes></app-recipes>
-    </div>
+  <div class="dashboard-item" >
+    <app-goals>
+    </app-goals>
   </div>
+  <div class="dashboard-item">
+    <app-profile>
+    </app-profile>
+  </div>
+  <div class="dashboard-item">
+    <app-history>
+    </app-history>
+  </div>
+  <div class="dashboard-item">
+    <app-inventory>
+    </app-inventory>
+  </div>
+  <div class="dashboard-item">
+    <app-meals>
+    </app-meals>
+  </div>
+  <div class="dashboard-item">
+    <app-recipes>
+    </app-recipes>
+  </div>
+
+
 </div>
 
-<div *ngIf="viewState.activeComponent" class="detail-view">
-  <div class="detail-content">
-    <button class="close-button" (click)="closeDetailView()">X</button>
-    <ng-container [ngSwitch]="viewState.activeComponent">
-      <app-goals *ngSwitchCase="'goals'"></app-goals>
-      <app-profile *ngSwitchCase="'profile'"></app-profile>
-      <app-history *ngSwitchCase="'history'"></app-history>
-      <app-fridge *ngSwitchCase="'fridge'"></app-fridge>
-      <app-meals *ngSwitchCase="'meals'"></app-meals>
-      <app-recipes *ngSwitchCase="'recipes'"></app-recipes>
-    </ng-container>
-  </div>
-</div>
+
