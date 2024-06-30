@@ -13,7 +13,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule, MatOption} from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import {MatTableModule} from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -22,12 +22,23 @@ import { RecipesComponent } from './componets/recipes/recipes.component';
 import { DashboardComponent } from './componets/dashboard/dashboard.component';
 import { HistoryComponent } from './componets/history/history.component';
 import { ProfileComponent } from './componets/profile/profile.component';
-import { FridgeComponent } from './componets/fridge/fridge.component';
 import { MealsComponent } from './componets/meals/meals.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ViewStateService } from './services/view-state.service';
 import { GoalsComponent } from './componets/goals/goals.component';
 import {MatSelect} from "@angular/material/select";
+import { InventoryComponent } from './componets/inventory/inventory.component';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef, MatHeaderRow,
+  MatHeaderRowDef, MatRow, MatRowDef,
+  MatTable
+} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -35,13 +46,14 @@ import {MatSelect} from "@angular/material/select";
     DashboardComponent,
     HistoryComponent,
     ProfileComponent,
-    FridgeComponent,
     MealsComponent,
     RecipesComponent,
     GoalsComponent,
+    InventoryComponent,
 
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -59,7 +71,20 @@ import {MatSelect} from "@angular/material/select";
     MatListModule,
     MatGridListModule,
     MatSelect,
-    MatOption
+    MatOption,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCell,
+    MatCell,
+    MatCellDef,
+    MatHeaderCellDef,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatRow,
+    MatHeaderRow,
+    MatPaginator,
+    MatSort,
+    MatTableModule
   ],
   providers: [
     ProfileService,
