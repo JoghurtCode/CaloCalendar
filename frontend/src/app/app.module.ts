@@ -39,6 +39,7 @@ import {
 } from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import { FridgeComponent } from './fridge/fridge.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {MatSort} from "@angular/material/sort";
     RecipesComponent,
     GoalsComponent,
     InventoryComponent,
+    FridgeComponent,
 
   ],
   imports: [
