@@ -1,33 +1,29 @@
+.inventory-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
 
-/* Add New Button */
-.add-new-button {
-  display: block;
+.new-item-form {
   margin-bottom: 20px;
-  font-size: 1em;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
 }
 
-.add-new-button:hover {
-  transform: translateY(-5px);
-}
-
-/* Table Styles */
-table {
+mat-form-field {
   width: 100%;
 }
 
-th.mat-header-cell {
-  font-weight: bold;
+mat-table {
+  margin-top: 20px;
 }
 
-td.mat-cell, th.mat-header-cell {
-  padding: 8px;
+button.add-new-button {
+  margin-bottom: 20px;
 }
 
-button.mat-icon-button {
-  padding: 0;
-  margin: 0 5px;
+h2, h3 {
+  text-align: center;
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
