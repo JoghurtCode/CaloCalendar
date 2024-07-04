@@ -9,11 +9,5 @@ import { ViewStateService } from '../../services/view-state.service';
 export class DashboardComponent {
   constructor(public viewState: ViewStateService) {}
 
-  openDetailView(componentName: string): void {
-    this.viewState.setActiveComponent(componentName);
-  }
 
-  closeDetailView(): void {
-    this.viewState.setActiveComponent(null);
-  }
 }

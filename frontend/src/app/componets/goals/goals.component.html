@@ -1,6 +1,19 @@
+<h2>Ziele</h2>
+<mat-form-field>
+  <mat-label>Zielname</mat-label>
+  <input matInput [(ngModel)]="goal.name" name="name">
+</mat-form-field>
+<br>
+<mat-form-field>
+  <mat-label>Zielgewicht</mat-label>
+  <input matInput [(ngModel)]="goal.targetWeight" name="targetWeight" disabled>
+</mat-form-field>
+<br>
+<button mat-raised-button color="primary" (click)="updateGoal()">Ziel aktualisieren</button>
+
 <div class="goals-container">
-  <h3>Aktuelles Ziel: Gewicht verlieren</h3>
-  <p>Fortschritt: 75kg</p>
+  <h3>Aktuelles Ziel: {{ goal.name }}</h3>
+  <p>Fortschritt: {{ profile.weight }} kg</p>
   <button mat-raised-button color="primary" (click)="openDetailView('goalDetails')">Neues Gewicht</button>
 
   <div *ngIf="viewState.activeComponent === 'goalDetails'" class="detail-view">

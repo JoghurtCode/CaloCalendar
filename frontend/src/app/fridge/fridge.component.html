@@ -31,18 +31,15 @@
     <div class="content">
       <div class="ingredients">
         <h3>Zutaten</h3>
-        <div class="ingredient-item">Milch</div>
-        <div class="ingredient-item">Eier</div>
-        <div class="ingredient-item">Käse</div>
-        <div class="ingredient-item">Gemüse</div>
+        <div *ngFor="let ingredient of currentRecipe.ingredients" class="ingredient-item">{{ingredient}}</div>
       </div>
       <div class="recipe-section">
-        <button mat-raised-button color="primary">Rezept Shuffle</button>
+        <button mat-raised-button color="primary" (click)="shuffleRecipe()">Rezept Shuffle</button>
         <div class="recipe-display">
-          <h3>Das Rezept</h3>
-          <p>Details zum Rezept</p>
+          <h3>{{currentRecipe.name}}</h3>
+          <p>{{currentRecipe.details}}</p>
         </div>
-        <button mat-raised-button color="accent">Zu Favoriten hinzufügen</button>
+        <button mat-raised-button color="accent" (click)="addToFavorites()">Zu Favoriten hinzufügen</button>
       </div>
     </div>
   </div>
